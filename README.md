@@ -314,7 +314,8 @@ using WindowsAzure.Messaging.NotificationHubs;
   
   ▶️ NOTE:
   ❗If this code is not working:
-      {
+     
+	{
 	"notification":{
 		"title":"Notification Hub Test Notification",
 		"body":"This is a sample notification delivered by Azure Notification Hubs."
@@ -324,9 +325,12 @@ using WindowsAzure.Messaging.NotificationHubs;
 		"property2":42
 	}
 }
-🟢You should try this code on Azure portal:
-  {"data":{"title":"Your_Title", "message": "Your_Message", "serialNo" : "1000000"}}
-  ◀️
+
+	🟢You should try this code on Azure portal:
+  
+	{"data":{"title":"Your_Title", "message": "Your_Message", "serialNo" : "1000000"}}
+  
+	◀️
   
   
   
