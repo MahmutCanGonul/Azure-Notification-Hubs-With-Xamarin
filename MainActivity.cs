@@ -12,7 +12,7 @@ namespace FinanceApp.Droid
     [Activity(Label = "BEX", Icon = "@drawable/bex", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation | ConfigChanges.UiMode | ConfigChanges.ScreenLayout | ConfigChanges.SmallestScreenSize )]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
-        internal static readonly string CHANNEL_ID = "bexexchangeapp";
+        internal static readonly string CHANNEL_ID = "Your_Channel_ID";
         
         protected override void OnCreate(Bundle savedInstanceState)
         {
