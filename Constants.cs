@@ -13,7 +13,7 @@ namespace FinanceApp.Droid
 {
     public static class Constants
     {
-        public const string ListenConnectionString = "Endpoint=sb://bexexchangeapp.servicebus.windows.net/;SharedAccessKeyName=DefaultListenSharedAccessSignature;SharedAccessKey=uGMd/XKmO7VPsdOf8M9qdQZAe7XCCAn+8aOngBjtN2E=";
-        public const string NotificationHubName = "bexexchangeappmain";
+        public const string ListenConnectionString = "CONNECTION-KEY";
+        public const string NotificationHubName = "HUB-NAME";
     }
 }
