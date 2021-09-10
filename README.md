@@ -243,11 +243,10 @@ If you're migrating from Google Cloud Messaging to Firebase, your project's Andr
 
 Listen connection string: On the dashboard in the Azure portal, choose View connection strings. Copy the DefaultListenSharedAccessSignature connection string for this value.
 Hub name: Name of your hub from the Azure portal. For example, mynotificationhub2.
-  
-  
+	
   public static class Constants
 {
-    public const string ListenConnectionString = "<Listen connection string>";
+	public const string ListenConnectionString = "<Listen connection string>";
     public const string NotificationHubName = "<hub name>";
 }
   
