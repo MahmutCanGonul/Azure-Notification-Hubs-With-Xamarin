@@ -243,6 +243,100 @@ If you're migrating from Google Cloud Messaging to Firebase, your project's Andr
 
 Listen connection string: On the dashboard in the Azure portal, choose View connection strings. Copy the DefaultListenSharedAccessSignature connection string for this value.
 Hub name: Name of your hub from the Azure portal. For example, mynotificationhub2.
+  
+  
+  public static class Constants
+{
+    public const string ListenConnectionString = "<Listen connection string>";
+    public const string NotificationHubName = "<hub name>";
+}
+  
+  
+  
+ 4.Step:
+  
+  a.Add the following using statements to MainActivity.cs:
+   using WindowsAzure.Messaging.NotificationHubs;
+  
+  b.Add the following properties to the MainActivity class:
+  internal static readonly string CHANNEL_ID = "my_notification_channel";
+  
+  c.In MainActivity.cs, add the following code to OnCreate after base.OnCreate(savedInstanceState):
+  // Listen for push notifications
+NotificationHub.SetListener(new AzureListener());
+
+// Start the SDK
+NotificationHub.Start(this.Application, HubName, ConnectionString);
+  
+  
+  
+  d.Add a class named AzureListener to your project. Add the following using statements to AzureListener.cs.
+  
+  using Android.Content;
+using WindowsAzure.Messaging.NotificationHubs;
+  
+  e.Add the following above your class declaration, and have your class inherit from Java.Lang.Object and implement the INotificationListener:
+  public class AzureListener : Java.Lang.Object, INotificationListener
+  
+  f.Add the following code inside MyFirebaseMessagingService class, to process messages that are received.
+  
+  public void OnPushNotificationReceived(Context context, INotificationMessage message)
+    {
+        var intent = new Intent(this, typeof(MainActivity));
+        intent.AddFlags(ActivityFlags.ClearTop);
+        var pendingIntent = PendingIntent.GetActivity(this, 0, intent, PendingIntentFlags.OneShot);
+
+        var notificationBuilder = new NotificationCompat.Builder(this, MainActivity.CHANNEL_ID);
+
+        notificationBuilder.SetContentTitle(message.Title)
+                    .SetSmallIcon(Resource.Drawable.ic_launcher)
+                    .SetContentText(message.Body)
+                    .SetAutoCancel(true)
+                    .SetShowWhen(false)
+                    .SetContentIntent(pendingIntent);
+
+        var notificationManager = NotificationManager.FromContext(this);
+
+        notificationManager.Notify(0, notificationBuilder.Build());
+    }
+  
+🛰️Last Step:
+  Build your project.
+  Run your app on your device or loaded emulator.
+  
+  
+  ❗Send test notification from the Azure portal❗
+  You can test receiving notifications in your app with the Test Send option in the Azure portal. It sends a test push notification to your device.
+  
+  ![image](https://user-images.githubusercontent.com/75094927/132888316-f48e111b-9088-4dc3-95d2-95eac00d8c4a.png)
+
+
+  
+  ▶️ NOTE:
+  ❗If this code is not working:
+      {
+	"notification":{
+		"title":"Notification Hub Test Notification",
+		"body":"This is a sample notification delivered by Azure Notification Hubs."
+	},
+	"data":{
+		"property1":"value1",
+		"property2":42
+	}
+}
+🟢You should try this code on Azure portal:
+  {"data":{"title":"Your_Title", "message": "Your_Message", "serialNo" : "1000000"}}
+  ◀️
+  
+  
+  
+  
+  That's it now your Azure Notification Hub is ready on your Xamarin Device. Result Like this:
+  
+  ![Azure Notification Hub  Picture](https://user-images.githubusercontent.com/75094927/132888720-930121cd-0d1d-48b4-89a1-54bc2bdf656d.png)
 
 
 
+
+  
+  
