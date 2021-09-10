@@ -256,17 +256,19 @@ Hub name: Name of your hub from the Azure portal. For example, mynotificationhub
  4.Step:
   
   a.Add the following using statements to MainActivity.cs:
-   using WindowsAzure.Messaging.NotificationHubs;
+  
+	using WindowsAzure.Messaging.NotificationHubs;
   
   b.Add the following properties to the MainActivity class:
-  internal static readonly string CHANNEL_ID = "my_notification_channel";
+  
+	internal static readonly string CHANNEL_ID = "my_notification_channel";
   
   c.In MainActivity.cs, add the following code to OnCreate after base.OnCreate(savedInstanceState):
-  // Listen for push notifications
-NotificationHub.SetListener(new AzureListener());
-
-// Start the SDK
-NotificationHub.Start(this.Application, HubName, ConnectionString);
+  
+	// Listen for push notifications
+        NotificationHub.SetListener(new AzureListener());
+        // Start the SDK
+         NotificationHub.Start(this.Application, HubName, ConnectionString);
   
   
   
@@ -276,7 +278,8 @@ NotificationHub.Start(this.Application, HubName, ConnectionString);
 using WindowsAzure.Messaging.NotificationHubs;
   
   e.Add the following above your class declaration, and have your class inherit from Java.Lang.Object and implement the INotificationListener:
-  public class AzureListener : Java.Lang.Object, INotificationListener
+ 
+	public class AzureListener : Java.Lang.Object, INotificationListener
   
   f.Add the following code inside MyFirebaseMessagingService class, to process messages that are received.
   
